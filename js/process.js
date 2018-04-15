@@ -1,23 +1,56 @@
-// create node
+// create an array with nodes
 var nodes = new vis.DataSet([
-    {id: 1, label: 'Node 1'},
-    {id: 2, label: 'Node 2'},
-    {id: 3, label: 'Node 3'},
-    {id: 4, label: 'Node 4'},
-    {id: 5, label: 'Node 5'},
-    {id: 6, label: 'Node 6'},
-
+    {id: 1, label: 'Cream Dispatch',          x: 0, y: 0, group:'dispatchCar'},
+    {id: 2, label: 'Cream & Skim Dispatch 2', x: 0, y: 400, group:'dispatchCar'},
+    {id: 3, label: 'Milk Reception',          x: 0, y: 800, group:'transportCar'},
+    {id: 4, label: 'Skim & Conc Reception',   x: 0, y: 1200, group:'transportCar'},
+    {id: 5, label: 'Raw Milk Storage',        x: 400, y: 800, group:'storage'},
+    {id: 6, label: 'Cream Storage',           x: 800, y: 400, group:'storage'},
+    {id: 7, label: 'Cheese Milk Buffer',      x: 800, y: 800, group:'buffer'},
+    {id: 8, label: 'Cheese Vats',             x: 1200, y: 800, group:'cheeseVat'},
+    {id: 9, label: 'Curd Buffer',             x: 1600, y: 800, group:'buffer'},
+    {id: 10, label: 'Curd Filler',            x: 2000, y: 800, group:'curdFiller'},
+    {id: 11, label: 'Presses',                x: 2000, y: 1200, group:'presses'},
+    {id: 12, label: 'Weighting',              x: 2400, y: 1200, group:'weighting'},
+    {id: 13, label: 'Powder Silos',           x: 800, y: 2400, group:'powderSilos'},
+    {id: 14, label: 'Culture Preparation',    x: 400, y: 2400, group:'culturePrep'},
+    {id: 15, label: 'Seeding Culture',        x: 200, y: 2400, group:'seedingCulture'},
+    {id: 16, label: 'Storage',                x: 200, y: 1000, group:'storage'},
+    {id: 17, x: 400, y: 400, group:'gea'},
+    {id: 18, label: 'Whey Buffer Tanks',      x: 2400, y: 1600, group:'buffer'},
+    {id: 19, label: 'Raw Whey Storage',       x: 2000, y: 1200, group:'storage'},
+    {id: 20, x: 2200, y: 2800, group:'gea'},
+    {id: 21, label: 'Big Bag Emptying',       x: 1600, y: 2400, group:'bigBagEmptying'},
+    {id: 22, label: 'Culture Buffer Tanks',   x: 2000, y: 1000, group:'buffer'},
+    {id: 23, label: 'Whey Cream Tanks',       x: 400, y: 2800, group:'buffer'},
 ]);
 
 // create relationship
 var edges = new vis.DataSet([
-    {from: 1, to: 3},
-    {from: 1, to: 2},
-    {from: 3, to: 4},
-    {from: 4, to: 3},
+    {from: 1, to: 6},
     {from: 2, to: 5},
-    {from: 1, to: 5},
-    {from: 5, to: 6}
+    {from: 3, to: 5},
+    {from: 4, to: 6},
+    {from: 5, to: 17},
+    {from: 13, to: 7},
+    {from: 7, to: 14},
+    {from: 14, to: 15},
+    {from: 14, to: 22},
+    {from: 17, to: 7},
+    {from: 17, to: 16},
+    {from: 6, to: 16},
+    {from: 7, to: 8},
+    {from: 8, to: 9},
+    {from: 9, to: 10},
+    {from: 10, to: 11},
+    {from: 11, to: 12},
+    {from: 8, to: 19},
+    {from: 19, to: 20},
+    {from: 20, to: 18},
+    {from: 21, to: 13},
+    {from: 22, to: 8},
+    {from: 7, to: 23},
+    {from: 23, to: 20},
 
 ]);
 
@@ -31,6 +64,21 @@ var data = {
 };
 
 var options = {
+    groups:{
+        buffer:{shape: 'image', image:'images/buffer.png'},
+        bigBagEmptying:{shape: 'image', image:'images/bigBagEmptying.png'},
+        cheeseVat:{shape: 'image', image:'images/cheeseVat.png'},
+        culturePrep:{shape: 'image', image:'images/culturePrep.png'},
+        curdFiller:{shape: 'image', image:'images/curdFiller.png'},
+        dispatchCar:{shape: 'image', image:'images/dispatchCar.png'},
+        powderSilos:{shape: 'image', image:'images/powderSilos.png'},
+        presses:{shape: 'image', image:'images/presses.png'},
+        storage:{shape: 'image', image:'images/storage.png'},
+        seedingCulture:{shape: 'image', image:'images/seedingCulture.png'},
+        transportCar:{shape: 'image', image:'images/transportCar.png'},
+        weighting:{shape: 'image', image:'images/weighting.png'},
+        gea:{shape:'image',image:'images/gea.png'},
+    },
     manipulation: {
         addNode: function(nodeData,callback) {
             nodeData.label = 'new node';
