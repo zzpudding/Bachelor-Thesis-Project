@@ -25,23 +25,16 @@
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="icon" href="images/favicon.ico">
     <!-- selection Box reference -->
-    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-    <script>
-        $(function() {
-            $( "#datepicker" ).datepicker({
-                changeMonth: true,
-                changeYear: true
-            });
-        });
-        $(function() {
-            $( "#datepicker2" ).datepicker({
-                changeMonth: true,
-                changeYear: true
-            });
-        });
-    </script>
+    <!-- import Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="//vuejs.org/js/vue.min.js"></script>
+    <!-- import stylesheet -->
+    <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    <!-- import iView -->
+    <link href="css/home.css" rel="stylesheet">
+    <script src="//unpkg.com/iview/dist/iview.min.js"></script>
+    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/iview/dist/iview.js"></script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -145,6 +138,16 @@
             <i class="fa fa-table"></i> Selection Box
         </div>
         <img src="images/select.png">
+        <script src="//unpkg.com/vue/dist/vue.js"></script>
+        <script src="//unpkg.com/iview/dist/iview.js"></script>
+        <div id="app">
+            <row>
+                <i-col span="12">
+                    <date-picker type="daterange" placement="bottom-end" placeholder="Select date" style="width: 200px"></date-picker>
+                </i-col>
+            </row>
+        </div>
+        <script src="js/home.js"></script>
     </div>
     <!-- Process Chart Example-->
     <div class="card mb-3">
