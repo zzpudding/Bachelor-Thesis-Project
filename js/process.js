@@ -1,28 +1,28 @@
 // create an array with nodes
 var nodes = new vis.DataSet([
-    {id: 1, label: 'Cream Dispatch',          x: 0, y: 0, group:'dispatchCar'},
-    {id: 2, label: 'Cream & Skim Dispatch 2', x: 0, y: 400, group:'dispatchCar'},
-    {id: 3, label: 'Milk Reception',          x: 0, y: 800, group:'transportCar'},
-    {id: 4, label: 'Skim & Conc Reception',   x: 0, y: 1200, group:'transportCar'},
-    {id: 5, label: 'Raw Milk Storage',        x: 400, y: 800, group:'storage'},
-    {id: 6, label: 'Cream Storage',           x: 800, y: 400, group:'storage'},
-    {id: 7, label: 'Cheese Milk Buffer',      x: 800, y: 800, group:'buffer'},
-    {id: 8, label: 'Cheese Vats',             x: 1200, y: 800, group:'cheeseVat'},
-    {id: 9, label: 'Curd Buffer',             x: 1600, y: 800, group:'buffer'},
-    {id: 10, label: 'Curd Filler',            x: 2000, y: 800, group:'curdFiller'},
-    {id: 11, label: 'Presses',                x: 2000, y: 1200, group:'presses'},
-    {id: 12, label: 'Weighting',              x: 2400, y: 1200, group:'weighting'},
-    {id: 13, label: 'Powder Silos',           x: 800, y: 2400, group:'powderSilos'},
-    {id: 14, label: 'Culture Preparation',    x: 400, y: 2400, group:'culturePrep'},
-    {id: 15, label: 'Seeding Culture',        x: 200, y: 2400, group:'seedingCulture'},
-    {id: 16, label: 'Storage',                x: 200, y: 1000, group:'storage'},
-    {id: 17, x: 400, y: 400, group:'gea'},
-    {id: 18, label: 'Whey Buffer Tanks',      x: 2400, y: 1600, group:'buffer'},
-    {id: 19, label: 'Raw Whey Storage',       x: 2000, y: 1200, group:'storage'},
-    {id: 20, x: 2200, y: 2800, group:'gea'},
-    {id: 21, label: 'Big Bag Emptying',       x: 1600, y: 2400, group:'bigBagEmptying'},
-    {id: 22, label: 'Culture Buffer Tanks',   x: 2000, y: 1000, group:'buffer'},
-    {id: 23, label: 'Whey Cream Tanks',       x: 400, y: 2800, group:'buffer'},
+    {id: 1, label: 'Cream Dispatch',          x: 0, y: 0, group:'dispatchCar', title:'This is Cream Dispatch car'},
+    {id: 2, label: 'Cream & Skim Dispatch',   x: 0, y: 400, group:'dispatchCar', title:'This is Cream & Skim Dispatch car'},
+    {id: 3, label: 'Milk Reception',          x: 0, y: 800, group:'transportCar', title:'This is Milk Reception'},
+    {id: 4, label: 'Skim & Conc Reception',   x: 0, y: 1200, group:'transportCar', title:'This is Skim & Conc Reception'},
+    {id: 5, label: 'Raw Milk Storage',        x: 400, y: 800, group:'storage', title:'This is Raw Milk Storage'},
+    {id: 6, label: 'Cream Storage',           x: 800, y: 400, group:'storage', title:'This is Cream Storage'},
+    {id: 7, label: 'Cheese Milk Buffer',      x: 800, y: 800, group:'buffer', title:'This is Cheese Milk Buffer'},
+    {id: 8, label: 'Cheese Vats',             x: 1200, y: 800, group:'cheeseVat', title:'This is Cheese Vats'},
+    {id: 9, label: 'Curd Buffer',             x: 1600, y: 800, group:'buffer', title:'This is Curd Buffer'},
+    {id: 10, label: 'Curd Filler',            x: 2000, y: 800, group:'curdFiller', title:'This is Curd Filler'},
+    {id: 11, label: 'Presses',                x: 2000, y: 1200, group:'presses', title:'This is Presses'},
+    {id: 12, label: 'Weighting',              x: 2400, y: 1200, group:'weighting', title:'This is Weighting'},
+    {id: 13, label: 'Powder Silos',           x: 800, y: 2400, group:'powderSilos', title:'This is Powder Silos'},
+    {id: 14, label: 'Culture Preparation',    x: 400, y: 2400, group:'culturePrep', title:'This is Culture Preparation'},
+    {id: 15, label: 'Seeding Culture',        x: 200, y: 2400, group:'seedingCulture', title:'This is Seeding Culture'},
+    {id: 16, label: 'Storage',                x: 200, y: 1000, group:'storage', title:'This is a Storage'},
+    {id: 17, x: 400, y: 400, group:'gea',     title:'This is a GEA machine'},
+    {id: 18, label: 'Whey Buffer Tanks',      x: 2400, y: 1600, group:'buffer', title:'This is Whey Buffer Tank'},
+    {id: 19, label: 'Raw Whey Storage',       x: 2000, y: 1200, group:'storage', title:'This is Raw Whey Storage'},
+    {id: 20, x: 2200, y: 2800, group:'gea',   title:'This is a GEA machine'},
+    {id: 21, label: 'Big Bag Emptying',       x: 1600, y: 2400, group:'bigBagEmptying', title:'This is Big Bag Emptying'},
+    {id: 22, label: 'Culture Buffer Tanks',   x: 2000, y: 1000, group:'buffer', title:'This is Culture Buffer Tank'},
+    {id: 23, label: 'Whey Cream Tanks',       x: 400, y: 2800, group:'buffer', title:'This is Whey Cream Tank'},
 ]);
 
 // create relationship
@@ -79,6 +79,8 @@ var options = {
         weighting:{shape: 'image', image:'images/weighting.png'},
         gea:{shape:'image',image:'images/gea.png'},
     },
+    hover: true,
+    dragNodes: false,
     manipulation: {
         addNode: function(nodeData,callback) {
             nodeData.label = 'new node';
@@ -86,7 +88,7 @@ var options = {
         }
     },
     autoResize: true,
-    height: 450,
+    height: '700',
     width: '100%',
  //   locale: 'en',
  //   locales: locales,
@@ -107,3 +109,7 @@ var options = {
 
 // initiate network
 var network = new vis.Network(container, data, options);
+
+network.on("showPopup", function (params) {
+    document.getElementById('eventSpan').innerHTML = '<h2>showPopup event: </h2>' + JSON.stringify(params, null, 4);
+});
