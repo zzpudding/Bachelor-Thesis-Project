@@ -51,7 +51,6 @@ var edges = new vis.DataSet([
     {from: 22, to: 8},
     {from: 7, to: 23},
     {from: 23, to: 20},
-
 ]);
 
 // create network
