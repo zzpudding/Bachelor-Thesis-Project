@@ -135,15 +135,15 @@
         <div class="card-header">
             <i class="fa fa-table"></i> Selection Box
         </div>
-        <img src="images/select.png">
         <script src="//unpkg.com/vue/dist/vue.js"></script>
         <script src="js/iview_dist_iview.js"></script>
-        <div id="app">
-            <row>
-                <i-col span="12">
-                    <date-picker type="daterange" placement="bottom-end" placeholder="Select date" style="width: 200px"></date-picker>
-                </i-col>
-            </row>
+        <div id="datepicker">
+            <col>
+                <date-picker type="datetime" format="yyyy-MM-dd HH:mm" placeholder="Select start time" style="width: 200px"></date-picker>
+            </col>
+            <col>
+                <date-picker type="datetime" format="yyyy-MM-dd HH:mm" placeholder="Select end time" style="width: 200px"></date-picker>
+            </col>
         </div>
         <script src="js/home.js"></script>
     </div>
