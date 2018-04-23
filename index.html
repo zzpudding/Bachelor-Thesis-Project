@@ -101,34 +101,19 @@
                 <date-picker type="datetimerange" placeholder="Select time range"
                              style="width: 300px"></date-picker>
             </div>
-            <script>
-                var Main = {
-
-                }
-
-                var Component = Vue.extend(Main)
-                new Component().$mount('#datepicker')
-            </script>
             <div id="batchPicker">
-                </checkbox-group>
                 <checkbox-group v-model="batchType">
                     <checkbox label="Batch start in time range"></checkbox>
                     <checkbox label="Batch end in time range"></checkbox>
                 </checkbox-group>
-                <script>
-                    var Main = {
-                        data() {
-                            return {
-                                batchType: ['']
-                            }
-                        }
-                    }
-                    var Component = Vue.extend(Main)
-                    new Component().$mount('#batchPicker')
-                </script>
+            </div>
+            <div class="searchButton">
+                <button type="button" class="button searchBtn" id="searchBtn1" onclick="searchBatch()">Search</button>
+                <button type="button" class="button searchBtn2" id="searchBtn2" onclick="quickSearch()">Current Batch Search</button>
             </div>
         </div>
     </div>
+    <script src="js/home.js"></script>
     <!-- Process Chart Example-->
     <div class="card mb-3">
         <div class="card-header">
