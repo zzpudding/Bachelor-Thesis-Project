@@ -24215,7 +24215,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
                     endTime: 'End time',
                     clear: 'Clear',
                     ok: 'Confirm',
-                    datePanelLabel: '[yyyy-] [m]',
+                    datePanelLabel: '[yyyy -] [m]',
                     month: '',
                     month1: 'Jan.',
                     month2: 'Feb.',

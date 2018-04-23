@@ -1,2 +1,14 @@
 @import url("//unpkg.com/iview/dist/styles/iview.css");
-#app{padding: 32px;}
+
+#datepicker{
+    float:left;
+    padding: 24px;
+    width:400px;
+}
+
+#batchPicker{
+    float:left;
+    padding: 24px;
+    width: 400px;
+}
+
