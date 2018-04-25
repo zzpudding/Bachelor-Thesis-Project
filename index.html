@@ -92,21 +92,6 @@
             <li class="breadcrumb-item active">My Dashboard</li>
         </ol>
     </div>
-
-    <input type="text" name="daterange" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM" />
-
-    <script type="text/javascript">
-        $(function() {
-            $('input[name="daterange"]').daterangepicker({
-                timePicker: true,
-                timePickerIncrement: 10,
-                locale: {
-                    format: 'MM/DD/YYYY h:mm A'
-                }
-            });
-        });
-    </script>
-
     <!-- Selection Box-->
     <div class="card mb-3">
         <div class="card-header">
@@ -116,8 +101,6 @@
             <div id="datepicker">
                 <date-picker id="test" type="datetimerange" placeholder="Select time range" style="width: 300px"></date-picker>
             </div>
-
-
             <div class="batchPicker">
                 <label class="container">Batch start in time range
                     <input type="checkbox" checked="checked" id="startBatch">
