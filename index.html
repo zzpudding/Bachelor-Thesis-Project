@@ -34,6 +34,7 @@
     <script src="//unpkg.com/vue/dist/vue.js"></script>
     <script src="js/iview_dist_iview.js"></script>
 
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -91,6 +92,21 @@
             <li class="breadcrumb-item active">My Dashboard</li>
         </ol>
     </div>
+
+    <input type="text" name="daterange" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM" />
+
+    <script type="text/javascript">
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 10,
+                locale: {
+                    format: 'MM/DD/YYYY h:mm A'
+                }
+            });
+        });
+    </script>
+
     <!-- Selection Box-->
     <div class="card mb-3">
         <div class="card-header">
@@ -98,22 +114,31 @@
         </div>
         <div id="selectionBox">
             <div id="datepicker">
-                <date-picker type="datetimerange" placeholder="Select time range"
-                             style="width: 300px"></date-picker>
+                <date-picker id="test" type="datetimerange" placeholder="Select time range" style="width: 300px"></date-picker>
             </div>
-            <div id="batchPicker">
-                <checkbox-group v-model="batchType">
-                    <checkbox label="Batch start in time range"></checkbox>
-                    <checkbox label="Batch end in time range"></checkbox>
-                </checkbox-group>
+
+
+            <div class="batchPicker">
+                <label class="container">Batch start in time range
+                    <input type="checkbox" checked="checked" id="startBatch">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Batch end in time range
+                    <input type="checkbox" id="endBatch">
+                    <span class="checkmark"></span>
+                </label>
             </div>
+
             <div class="searchButton">
-                <button type="button" class="button searchBtn" id="searchBtn1" onclick="searchBatch()">Search</button>
-                <button type="button" class="button searchBtn2" id="searchBtn2" onclick="quickSearch()">Current Batch Search</button>
+                <button type="button" class="button searchBtn" id="searchBtn1" onclick="search()">Search</button>
+                <button type="button" class="button searchBtn2" id="searchBtn2" onclick="quickSearch()">Current Batch
+                    Search
+                </button>
             </div>
         </div>
     </div>
     <script src="js/home.js"></script>
+
     <!-- Process Chart Example-->
     <div class="card mb-3">
         <div class="card-header">
@@ -178,6 +203,8 @@
         </div>
     </div>
 </div>
+
+
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -191,7 +218,7 @@
 <!-- Custom scripts for this page-->
 <script src="js/sb-admin-datatables.min.js"></script>
 <script src="js/sb-admin-charts.min.js"></script>
-</div>
+
 </body>
 
 </html>
