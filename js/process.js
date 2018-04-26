@@ -1,6 +1,15 @@
+var message = 'This is good'
+
+function generateMessage(){
+    var tem=''
+
+}
+
+
+
 // create an array with nodes
 var nodes = new vis.DataSet([
-    {id: 1, label: 'Cream Dispatch',          x: 0, y: 0, group:'dispatchCar', title:'This is Cream Dispatch car'},
+    {id: 1, label: 'Cream Dispatch',          x: 0, y: 0, group:'dispatchCar', title:message},
     {id: 2, label: 'Cream & Skim Dispatch',   x: 0, y: 400, group:'dispatchCar', title:'This is Cream & Skim Dispatch car'},
     {id: 3, label: 'Milk Reception',          x: 0, y: 800, group:'transportCar', title:'This is Milk Reception'},
     {id: 4, label: 'Skim & Conc Reception',   x: 0, y: 1200, group:'transportCar', title:'This is Skim & Conc Reception'},

@@ -97,28 +97,29 @@
         <div class="card-header">
             <i class="fa fa-table"></i> Selection Box
         </div>
-        <div id="selectionBox">
-            <div id="datepicker">
-                <date-picker id="test" type="datetimerange" placeholder="Select time range" style="width: 300px"></date-picker>
-            </div>
-            <div class="batchPicker">
-                <label class="container">Batch start in time range
-                    <input type="checkbox" checked="checked" id="startBatch">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Batch end in time range
-                    <input type="checkbox" id="endBatch">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
+        <form action="home.php" method="post">
+            <div id="selectionBox">
+                <div id="datepicker">
+                    <date-picker id="test" type="datetimerange" placeholder="Select time range"
+                                 style="width: 300px"></date-picker>
+                </div>
+                <div class="batchPicker">
+                    <label class="container">Batch start in time range
+                        <input type="checkbox" checked="checked" id="startBatch">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Batch end in time range
+                        <input type="checkbox" id="endBatch">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
 
-            <div class="searchButton">
-                <button type="button" class="button searchBtn" id="searchBtn1" onclick="search()">Search</button>
-                <button type="button" class="button searchBtn2" id="searchBtn2" onclick="quickSearch()">Current Batch
-                    Search
-                </button>
+                <div class="searchButton">
+                    <button type="submit" class="button searchBtn" id="searchBtn1" onclick="search()">Search</button>
+                    <button type="submit" class="button searchBtn2" id="searchBtn2" onclick="quickSearch()">Current Batch Search</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
     <script src="js/home.js"></script>
 
