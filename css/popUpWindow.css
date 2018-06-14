@@ -1,0 +1,71 @@
+/*Style label*/
+label {
+    display: inline-block;
+    padding-left: 10px;
+    font-size: 16px;size: 24px;
+    width: 50px;
+    text-align: -moz-left;
+}
+
+
+/*Style pop up window*/
+#network-popUp {
+    display: none;
+    position: absolute;
+    z-index: 299;
+    top:600px;
+    left: 500px;
+    width: 200px;
+    height: 200px;
+    border-style: solid;
+    border-top-color: #4c4c4c;
+    border-radius: 5px;
+    background-color: white;
+}
+
+/*Style window header*/
+.windowTitle {
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+}
+
+/*Style the save button*/
+.saveBtn {
+    font-size: 14px;
+    color: dodgerblue;
+    background-color: white;
+    padding: 4px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+    margin-left: 20px;
+    margin-right: 15px;
+}
+
+/* On mouse-over, add a green background color */
+.saveBtn:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/*Style the cancel button*/
+.cancelBtn {
+    font-size: 14px;
+    color: dodgerblue;
+    background-color: white;
+    padding: 4px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+    margin-left: 15px;
+    margin-right: 20px;
+}
+
+/* On mouse-over, add a red background color */
+.cancelBtn:hover {
+    background-color: red;
+    color: white;
+}
