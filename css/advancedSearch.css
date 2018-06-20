@@ -1,9 +1,88 @@
-.advancedSearchArea{
-    display: inline-block;
-    width: 1000px;
+@media screen and (max-width: 1100px) {
+    .advancedSearchArea {
+        background-color: whitesmoke;
+        display: inline-block;
+        width: 700px;
+        margin-left: 50px;
+    }
 }
 
-.advancedSelection{
+@media screen and (min-width: 1100px) {
+    .advancedSearchArea {
+        margin-left: 50px;
+        background-color: whitesmoke;
+        display: inline-block;
+        width: 950px;
+    }
+}
+
+.styledInput {
+    position: relative;
+    width: 200px;
+    font-family: sans-serif;
+    font-size: 16px;
+    padding: 2px 12px;
+    margin: 4px;
+    border-color: gainsboro;
+}
+
+/*the container must be positioned relative:*/
+.styledSelect {
+    position: relative;
+    width: 200px;
+    height: 30px;
+    font-family: sans-serif;
+    font-size: 16px;
+    color:dimgrey;
+    margin: 4px;
+    background-color: white;
+}
+
+.selectArea {
     display: inline-block;
-    width: 1000px;
+    width: 300px;
+    padding: 40px;
+}
+
+.AdSearchBtn {
+    background-color: whitesmoke;
+    color: dodgerblue;
+    width: 200px;
+    font-size: 16px;
+    font-family: sans-serif;
+    padding: 21px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-color: lightgrey;
+    cursor: pointer;
+    margin: 4px;
+}
+
+.AdSearchBtn:hover {
+    background-color: white;
+    font-weight: bold;
+    color: dodgerblue;
+}
+
+/* Customized search button */
+.searchBtn-advanced {
+    background-color: white;
+    border-color: lightgrey;
+    color: dimgray;
+    font-size: 16px;
+    font-family: sans-serif;
+    width: 200px;
+    padding: 2px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px;
+}
+
+.searchBtn-advanced:hover {
+    background-color: dodgerblue;
+    color: white;
+    border-color: dodgerblue;
+    font-weight: bold;
 }
