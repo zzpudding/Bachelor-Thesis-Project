@@ -2,7 +2,7 @@
 /**
  * Created by PhpStorm.
  * User: zhangyujia
- * Date: 2414.06.18
+ * Date: 2414.04.18
  * Time: 12:53
  */
 $user = "root";
@@ -18,6 +18,8 @@ if ($connection->connect_error) {
 
 
 //query for the advanced search options
+//The result from Batch Name searching should be searching conditions in Batch Parameter search
+//Same to the transport search
 $query_BatchName = "SELECT * FROM  WHERE category= ";
 $query_BatchParameter = "";
 $query_Show = "";
@@ -34,10 +36,10 @@ $result_TP = $connection->query($query_TransParameter);
 //corresponding row name in database, this part should be modified according to actual database
 //for example, $batchName = "(actual Category Name in DB)"
 $batchName = "batchName";
-$batchParameter = "";
-$show = "";
-$transportName = "";
-$transportParameter = "";
+$batchParameter = "batchPara";
+$show = "show";
+$transportName = "transportName";
+$transportParameter = "transportPara";
 
 ?>
 
@@ -75,7 +77,7 @@ $transportParameter = "";
     <link href="css/popUpWindow.css" rel="stylesheet">
     <link href="css/selectionBox.css" rel="stylesheet">
     <link href="css/advancedSearch.css" rel="stylesheet">
-    <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    <link href="css/iview.css" rel="stylesheet">
     <script src="//unpkg.com/vue/dist/vue.js"></script>
     <script src="js/iview_dist_iview.js"></script>
 
@@ -100,7 +102,7 @@ $transportParameter = "";
                 </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="tables.php">
                     <i class="fa fa-fw fa-table"></i>
                     <span class="nav-link-text">Tables</span>
                 </a>
@@ -127,6 +129,7 @@ $transportParameter = "";
         </ul>
     </div>
 </nav>
+
 <div class="content-wrapper">
     <div class="container-fluid">
         <!-- Breadcrumbs-->
@@ -144,98 +147,104 @@ $transportParameter = "";
         </div>
         <div class="card-body" style="display: inline-block">
             <form action="index.php" method="post">
-                <div id="datepicker">
-                    <Date-picker type="datetimerange"
-                                 @on-change="hanldeChange" placeholder="select time"
-                                 style="width: 300px"></Date-picker>
-                </div>
-                <div class="batchArea">
-                    <label class="batchPicker">Batch start in time range
-                        <input type="checkbox" checked="checked" id="startBatch">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="batchPicker">Batch end in time range
-                        <input type="checkbox" id="endBatch">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="searchButtonArea">
-                    <button type="submit" class="searchBtn" id="searchBtn1" onclick="search()"><span>Search</span>
-                    </button>
-                    <button type="button" class="searchBtn" id="searchBtn2" onclick="quickSearch()">
-                        <span>Default Search</span>
-                    </button>
-                </div>
-                <div class="searchButtonArea">
-
-                </div>
-
-
-                <div style="display: inline-block">
-                    <div class="panel-group" id="accordion">
-                            <div class="panel-heading">
+                <div class="generalSearchArea">
+                    <div id="datepicker">
+                        <Date-picker type="datetimerange"
+                                     @on-change="hanldeChange" placeholder="select time"
+                                     style="width: 300px"></Date-picker>
+                    </div>
+                    <div class="batchArea">
+                        <label class="batchPicker">Batch start in time range
+                            <input type="checkbox" checked="checked" id="startBatch">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="batchPicker">Batch end in time range
+                            <input type="checkbox" id="endBatch">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="searchButtonArea">
+                        <button type="submit" class="searchBtn" id="searchBtn1" onclick="search()"><span>Search</span>
+                        </button>
+                        <button type="button" class="searchBtn" id="searchBtn2" onclick="quickSearch()">
+                            <span>Default Search</span>
+                        </button>
+                    </div>
+                    <div class="searchButtonArea">
+                        <div style="display: inline-block">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel-heading">
                                     <a data-toggle="collapse" data-parent="#accordion"
                                        href="#collapseOne">
-                                        <button type="button" class="searchBtn AdSearchBtn" id="advancedSearch"
-                                                onclick="advancedSearch()"><span>Advanced Search Options</span></button>
+                                        <button type="button" class="AdSearchBtn" id="advancedSearch"
+                                                onclick="advancedSearch()"><span>More Search Options</span></button>
                                     </a>
+                                </div>
                             </div>
-                            <div class="advancedSearchArea">
-                                <div id="collapseOne" class="panel-collapse collapse in">
-                                        <div class="advancedSelection">
-                                            <!--ALL default option under advancedSelection div class should be replaced by commended php code-->
-                                            <select class="custom-select-lg" id="batchNameSelect">
-                                                <option>batch</option>
-                                                <option>name</option>
-                                                <?php //while ($row = $result_BN->fetch_assoc()) {
-                                                //echo "<option>" . $row{$batchName} . "</option>";
-                                                //}
-                                                //?>
-                                            </select>
-                                            <select>
-                                                <option>batch</option>
-                                                <option>parameter</option>
-                                                <?php //while ($row = $result_BP->fetch_assoc()) {
-                                                //                                                    echo "<option>" . $row{$batchParameter} . "</option>";
-                                                //                                                }
-                                                //                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="sharedElement">
-                                            <select>
-                                                <option>equal</option>
-                                                <option>no less than</option>
-                                                <option>less than</option>
-                                            </select>
-                                            <input placeholder="Enter value..."/>
-                                            <button type="button" class="searchBtn">Search</button>
-                                        </div>
-                                        <div class="advancedSelection">
-                                            <select>
-                                                <option>show</option>
-                                                <?php //while ($row = $result_S->fetch_assoc()) {
-                                                //                                                    echo "<option>" . $row{$show} . "</option>";
-                                                //                                                }
-                                                //                                                ?>
-                                            </select>
-                                            <select>
-                                                <option>transport</option>
-                                                <option>name</option>
-                                                <?php //while ($row = $result_TN->fetch_assoc()) {
-                                                //                                                    echo "<option>" . $row{$transportName} . "</option>";
-                                                //                                                }
-                                                //                                                ?>
-                                            </select>
-                                            <select>
-                                                <option>transport</option>
-                                                <option>parameter</option>
-                                                <?php //while ($row = $result_TN->fetch_assoc()) {
-                                                //                                                    echo "<option>" . $row{$transportParameter} . "</option>";
-                                                //                                                }
-                                                //                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="advancedSearchArea">
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="selectArea">
+                            <!--ALL default option tags under advancedSelection div class should be replaced by commended php code-->
+                            <select class="styledSelect" id="batchNameSelect">
+                                <option>batch name 1</option>
+                                <option>batch name 2</option>
+                                <option>batch name 3</option>
+                                <option>batch name 4</option>
+                                <?php //while ($row = $result_BN->fetch_assoc()) {
+                                //echo "<option>" . $row{$batchName} . "</option>";
+                                //}
+                                //?>
+                            </select>
+                            <select class="styledSelect" id="batchParaSelect">
+                                <option>batch parameter 1</option>
+                                <option>batch parameter 2</option>
+                                <option>batch parameter 3</option>
+                                <option>batch parameter 4</option>
+                                <?php //while ($row = $result_BP->fetch_assoc()) {
+                                //                                                    echo "<option>" . $row{$batchParameter} . "</option>";
+                                //                                                }
+                                //?>
+                            </select>
+                        </div>
+                        <div class="selectArea">
+                            <select class="styledSelect" id="showSelect">
+                                <option>default 1</option>
+                                <option>default 2</option>
+                                <?php //while ($row = $result_S->fetch_assoc()) {
+                                //                                                    echo "<option>" . $row{$show} . "</option>";
+                                //                                                }
+                                //                                                ?>
+                            </select>
+                            <select class="styledSelect" id="tranSelect">
+                                <option>transport name 1</option>
+                                <option>transport name 2</option>
+                                <option>transport name 3</option>
+                                <?php //while ($row = $result_TN->fetch_assoc()) {
+                                //                                                    echo "<option>" . $row{$transportName} . "</option>";
+                                //                                                }
+                                //                                                ?>
+                            </select>
+                            <select class="styledSelect" id="tranParaSelect">
+                                <option>transport parameter 1</option>
+                                <option>transport parameter 2</option>
+                                <option>transport parameter 3</option>
+                                <?php //while ($row = $result_TN->fetch_assoc()) {
+                                //                                                    echo "<option>" . $row{$transportParameter} . "</option>";
+                                //                                                }
+                                //                                                ?>
+                            </select>
+                        </div>
+                        <div class="selectArea">
+                            <select class="styledSelect" id="optionSelect">
+                                <option>equal</option>
+                                <option>no less than</option>
+                                <option>less than</option>
+                            </select>
+                            <input class="styledInput" placeholder="Enter value..."/>
+                            <button type="button" class="searchBtn-advanced">Search</button>
                         </div>
                     </div>
                 </div>
@@ -263,14 +272,20 @@ $transportParameter = "";
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Source</th>
-                        <th>Destination</th>
-                    </tr>
-                    </thead>
-                </table>
+                    <?php
+                    if (isset($_POST['submit'])) {
+                        $sql = "SELECT ID,sour,destination FROM rpt_Transport";
+                    }
+                    $result = $connection->query($sql);
+                    echo "<thead><tr><th>ID</th><th>Source</th><th>Destination</th></tr></thead>" . "<br>";
+                    if ($result->num_rows > 0) {//if there is data in database
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr><td>" . $row['ID'] . "</td><td>" . $row['sour'] . "</td><td>" . $row['destination'] . "</td></tr><br>";
+                        }
+                        echo "</table>";
+                    } else echo "</table>";
+                    $connection->close();
+                    ?>
             </div>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
@@ -314,6 +329,7 @@ $transportParameter = "";
     </div>
     <input class="saveBtn" type="button" value="save" id="saveButton"/>
     <input class="cancelBtn" type="button" value="cancel" id="cancelButton"/>
+</div>
 <!-- /.container-fluid-->
 <!-- /.content-wrapper-->
 <footer class="sticky-footer">
@@ -347,7 +363,6 @@ $transportParameter = "";
     </div>
 </div>
 
-
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -360,8 +375,6 @@ $transportParameter = "";
 <script src="js/sb-admin.min.js"></script>
 <!-- Custom scripts for this page-->
 <script src="js/sb-admin-datatables.min.js"></script>
-<script src="js/sb-admin-charts.min.js"></script>
-
 </body>
 
 </html>
