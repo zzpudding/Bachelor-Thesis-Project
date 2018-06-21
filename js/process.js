@@ -190,7 +190,7 @@ function cancelEdit(callback) {
     clearPopUp();
     callback(null);
 }
-W
+
 function saveData(data,callback) {
     data.id = document.getElementById('node-id').value;
     data.label = document.getElementById('node-label').value;
